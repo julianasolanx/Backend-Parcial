@@ -17,17 +17,19 @@ import org.springframework.web.bind.annotation.RestController;
 import com.jules.parcial.entity.Empresa;
 import com.jules.parcial.service.EmpresaService;
 
-import lombok.RequiredArgsConstructor;
-
 @CrossOrigin(origins = "*")
 @RestController
-@RequiredArgsConstructor
 @RequestMapping("/api/empresas")
 public class EmpresaController {
     private final EmpresaService empresaService;
 
+    public EmpresaController(
+        EmpresaService empresaService
+    ) {
+        this.empresaService = empresaService;
+    }
 
-@GetMapping
+    @GetMapping
     public ResponseEntity<List<Empresa>> tomarTodas() {
         return ResponseEntity.ok(empresaService.obtenerEmpresas());
     }
